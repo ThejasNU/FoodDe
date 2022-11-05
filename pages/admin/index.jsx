@@ -122,7 +122,7 @@ const Index = ({ orders, products }) => {
 export const getServerSideProps = async (ctx) => {
 	const myCookie = ctx.req?.cookies || "";
 
-	if (myCookie.token !== process.env.TOKEN) {
+	if (myCookie.token !== process.env.NEXT_PUBLIC_TOKEN) {
 		return {
 			redirect: {
 				destination: "/admin/login",
