@@ -30,6 +30,9 @@ export const getServerSideProps = async (ctx) => {
 	if (myCookie.token === process.env.NEXT_PUBLIC_TOKEN) {
 		admin = true;
 	}
+	const test = await axios.get(
+		`${process.env.NEXT_PUBLIC_BASE_URL}/api/orders`
+	);
 	const res = await axios.get(
 		`${process.env.NEXT_PUBLIC_BASE_URL}/api/products`
 	);
