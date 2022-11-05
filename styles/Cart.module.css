@@ -56,6 +56,13 @@
 	cursor: pointer;
 	margin-top: 20px;
 }
+.payButton {
+	height: 30px;
+	color: teal;
+	font-weight: bold;
+	cursor: pointer;
+	margin-top: 20px;
+}
 
 @media screen and (max-width: 480px) {
 	.container {

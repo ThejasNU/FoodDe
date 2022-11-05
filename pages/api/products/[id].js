@@ -5,7 +5,9 @@ export default async function handler(req, res) {
 	const {
 		method,
 		query: { id },
+		cookies,
 	} = req;
+	const token = cookies.token;
 	dbConnect();
 
 	if (method === "GET") {
@@ -18,6 +20,9 @@ export default async function handler(req, res) {
 	}
 
 	if (method === "PUT") {
+		if (!token || token !== process.env.TOKEN) {
+			return res.status(401).send("Not Authenticated");
+		}
 		try {
 			const product = await Product.create(req.body);
 			res.status(201).json(product);
@@ -27,5 +32,14 @@ export default async function handler(req, res) {
 	}
 
 	if (method === "DELETE") {
+		if (!token || token !== process.env.TOKEN) {
+			return res.status(401).send("Not Authenticated");
+		}
+		try {
+			await Product.findByIdAndDelete(id);
+			return res.status(200).send("Deleted successfully");
+		} catch (err) {
+			return res.status(500).send("Api error");
+		}
 	}
 }

@@ -3,8 +3,12 @@ import Featured from "../components/Featured";
 import ProductList from "../components/ProductList";
 import styles from "../styles/Home.module.css";
 import axios from "axios";
+import AddButton from "../components/AddButton";
+import { useState } from "react";
+import Add from "../components/Add";
 
-export default function Home({ productList }) {
+export default function Home({ productList, admin }) {
+	const [close, setClose] = useState(true);
 	return (
 		<div className={styles.container}>
 			<Head>
@@ -13,12 +17,19 @@ export default function Home({ productList }) {
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
 			<Featured />
+			{admin && <AddButton setClose={setClose} />}
 			<ProductList productList={productList} />
+			{!close && <Add setClose={setClose} />}
 		</div>
 	);
 }
 
-export const getServerSideProps = async () => {
+export const getServerSideProps = async (ctx) => {
+	const myCookie = ctx.req?.cookies || "";
+	let admin = false;
+	if (myCookie.token === process.env.TOKEN) {
+		admin = true;
+	}
 	const res = await axios.get(
 		`${process.env.NEXT_PUBLIC_BASE_URL}/api/products`
 	);
@@ -26,6 +37,7 @@ export const getServerSideProps = async () => {
 	return {
 		props: {
 			productList: res.data,
+			admin,
 		},
 	};
 };

@@ -2,11 +2,14 @@ import styles from "../../styles/Product.module.css";
 import Image from "next/image";
 import axios from "axios";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { addProduct } from "../../redux/cartSlice";
 
 const Product = ({ product }) => {
 	const [price, setPrice] = useState(product.price);
 	const [extras, setExtras] = useState([]);
 	const [quantity, setQuantity] = useState(1);
+	const dispatch = useDispatch();
 
 	const changePrice = (num) => {
 		setPrice(price + num);
@@ -23,6 +26,10 @@ const Product = ({ product }) => {
 		}
 	};
 
+	const handleAddToCart = () => {
+		dispatch(addProduct({ ...product, extras, price, quantity }));
+	};
+
 	return (
 		<div className={styles.container}>
 			<div className={styles.left}>
@@ -34,7 +41,11 @@ const Product = ({ product }) => {
 				<h1 className={styles.title}>{product.title}</h1>
 				<span className={styles.price}>₹{price}</span>
 				<p className={styles.desc}>{product.desc}</p>
-				<h3 className={styles.choose}>Choose additional ingredients</h3>
+				{product.extraOptions.length ? (
+					<h3 className={styles.choose}>Choose additional ingredients</h3>
+				) : (
+					<></>
+				)}
 				<div className={styles.ingredients}>
 					{product.extraOptions.map((option) => (
 						<div className={styles.option} key={option._id}>
@@ -56,7 +67,9 @@ const Product = ({ product }) => {
 						className={styles.quantity}
 						onChange={(e) => setQuantity(e.target.value)}
 					/>
-					<button className={styles.button}>Add to Cart</button>
+					<button className={styles.button} onClick={handleAddToCart}>
+						Add to Cart
+					</button>
 				</div>
 			</div>
 		</div>
