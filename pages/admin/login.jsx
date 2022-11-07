@@ -1,4 +1,5 @@
 import axios from "axios";
+import Head from "next/head";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import styles from "../../styles/Login.module.css";
@@ -23,6 +24,9 @@ const Login = () => {
 
 	return (
 		<div className={styles.container}>
+			<Head>
+				<title>Admin | FoodDe</title>
+			</Head>
 			<div className={styles.wrapper}>
 				<h1>Admin Dashboard</h1>
 				<input

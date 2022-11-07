@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import { reset } from "../redux/cartSlice";
 import OrderDetail from "../components/OrderDetail";
+import Head from "next/head";
 
 const Cart = () => {
 	const dispatch = useDispatch();
@@ -41,6 +42,9 @@ const Cart = () => {
 	};
 	return (
 		<div className={styles.container}>
+			<Head>
+				<title>Cart | FoodDe</title>
+			</Head>
 			<div className={styles.left}>
 				<table className={styles.table}>
 					<thead>

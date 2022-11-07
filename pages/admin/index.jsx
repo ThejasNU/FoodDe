@@ -1,4 +1,5 @@
 import axios from "axios";
+import Head from "next/head";
 import Image from "next/image";
 import { useState } from "react";
 import styles from "../../styles/Admin.module.css";
@@ -41,6 +42,9 @@ const Index = ({ orders, products }) => {
 
 	return (
 		<div className={styles.container}>
+			<Head>
+				<title>Admin | FoodDe</title>
+			</Head>
 			<div className={styles.item}>
 				<h1 className={styles.title}>Products</h1>
 				<table className={styles.table}>
