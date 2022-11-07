@@ -29,17 +29,27 @@ const Login = () => {
 					placeholder="username"
 					className={styles.input}
 					onChange={(e) => setUsername(e.target.value)}
+					id="admin-uname"
 				/>
 				<input
 					placeholder="password"
 					type="password"
 					className={styles.input}
 					onChange={(e) => setPassword(e.target.value)}
+					id="admin-pass"
 				/>
-				<button onClick={handleClick} className={styles.button}>
+				<button
+					onClick={handleClick}
+					className={styles.button}
+					id="admin-signin-button"
+				>
 					Sign In
 				</button>
-				{error && <span className={styles.error}>Wrong Credentials!</span>}
+				{error && (
+					<span className={styles.error} id="admin-login-error">
+						Wrong Credentials!
+					</span>
+				)}
 			</div>
 		</div>
 	);
