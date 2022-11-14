@@ -31,10 +31,9 @@ const Navbar = () => {
 					<Link href="/">
 						<li className={styles.listItem}>Products</li>
 					</Link>
-					<li className={styles.listItem}>Menu</li>
-					<li className={styles.listItem}>Events</li>
-					<li className={styles.listItem}>Blog</li>
-					<li className={styles.listItem}>Contact</li>
+					<Link href="/admin">
+						<li className={styles.listItem}>Admin</li>
+					</Link>
 				</ul>
 			</div>
 			<div className={styles.item}>

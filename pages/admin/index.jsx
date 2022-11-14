@@ -3,11 +3,14 @@ import Head from "next/head";
 import Image from "next/image";
 import { useState } from "react";
 import styles from "../../styles/Admin.module.css";
+import AddButton from "../../components/AddButton";
+import Add from "../../components/Add";
 
 const Index = ({ orders, products }) => {
 	const [productList, setProductList] = useState(products);
 	const [orderList, setOrderList] = useState(orders);
 	const status = ["preparing", "on the way", "delivered"];
+	const [close, setClose] = useState(true);
 
 	const handleDelete = async (id) => {
 		try {
@@ -19,6 +22,8 @@ const Index = ({ orders, products }) => {
 			console.log(err);
 		}
 	};
+
+	const handleEdit = async (id) => {};
 
 	const handleStatus = async (id) => {
 		const item = orderList.filter((order) => order._id === id)[0];
@@ -45,7 +50,9 @@ const Index = ({ orders, products }) => {
 			<Head>
 				<title>Admin | FoodDe</title>
 			</Head>
+
 			<div className={styles.item}>
+				<AddButton setClose={setClose}></AddButton>
 				<h1 className={styles.title}>Products</h1>
 				<table className={styles.table}>
 					<tbody>
@@ -73,7 +80,12 @@ const Index = ({ orders, products }) => {
 								<td>{product.title}</td>
 								<td>₹{product.price}</td>
 								<td>
-									<button className={styles.button}>Edit</button>
+									{/* <button
+										className={styles.button}
+										onClick={() => handleEdit(product._id)}
+									>
+										Edit
+									</button> */}
 									<button
 										className={styles.button}
 										onClick={() => handleDelete(product._id)}
@@ -119,6 +131,7 @@ const Index = ({ orders, products }) => {
 					))}
 				</table>
 			</div>
+			{!close && <Add setClose={setClose} />}
 		</div>
 	);
 };

@@ -5,11 +5,12 @@ import ProductCard from "./ProductCard";
 const ProductList = ({ productList }) => {
 	return (
 		<div className={styles.container}>
-			<h1 className={styles.title}>THE BEST PIZZA IN TOWN</h1>
+			<h1 className={styles.title}>THE BEST PLACE FOR THE BEST FOOD</h1>
 			<p className={styles.desc}>
-				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut blandit arcu
-				in pretium molestie. Interdum et malesuada fames acme. Lorem ipsum dolor
-				sit amet, consectetur adipiscing elit.
+				Fulfill your comfort food cravings. <br /> Where every flavor tells a
+				story.
+				<br />
+				Fun.Fast.Tasty.Delicious.
 			</p>
 			<div className={styles.wrapper}>
 				{productList.map((product) => (
