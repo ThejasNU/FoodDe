@@ -4,6 +4,7 @@ import axios from "axios";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addProduct } from "../../redux/cartSlice";
+import Head from "next/head";
 
 const Product = ({ product }) => {
 	const [price, setPrice] = useState(product.price);
@@ -32,6 +33,9 @@ const Product = ({ product }) => {
 
 	return (
 		<div className={styles.container}>
+			<Head>
+				<title>{product.title} | FoodDe</title>
+			</Head>
 			<div className={styles.left}>
 				<div className={styles.imgContainer}>
 					<Image src={product.img} objectFit="contain" layout="fill" alt="" />

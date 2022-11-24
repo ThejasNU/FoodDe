@@ -1,6 +1,7 @@
 import styles from "../../styles/Order.module.css";
 import Image from "next/image";
 import axios from "axios";
+import Head from "next/head";
 
 const Order = ({ order }) => {
 	const status = order.status;
@@ -12,6 +13,9 @@ const Order = ({ order }) => {
 	};
 	return (
 		<div className={styles.container}>
+			<Head>
+				<title>Orders | FoodDe</title>
+			</Head>
 			<div className={styles.left}>
 				<div className={styles.row}>
 					<table className={styles.table}>

@@ -5,17 +5,17 @@ import { useState } from "react";
 const Featured = () => {
 	const [index, setIndex] = useState(0);
 	const images = [
-		"/img/featured.png",
+		"/img/featured4.png",
 		"/img/featured2.png",
-		"/img/featured3.png",
+		"/img/featured8.png",
 	];
 
 	const handleArrow = (direction) => {
 		if (direction === "l") {
-			setIndex(index !== 0 ? index - 1 : 4);
+			setIndex(index !== 0 ? index - 1 : 2);
 		}
 		if (direction === "r") {
-			setIndex(index !== 4 ? index + 1 : 0);
+			setIndex(index !== 2 ? index + 1 : 0);
 		}
 	};
 
