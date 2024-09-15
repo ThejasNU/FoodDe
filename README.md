@@ -1,3 +1,3 @@
 # FoodDe
 
-Online Food Ordering Webapp built using NEXTjs,Mongodb and Redux-Toolkit
+Online Food Ordering Webapp built using NEXTjs,Couchbase and Redux-Toolkit
