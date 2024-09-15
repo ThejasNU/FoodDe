@@ -1,4 +1,4 @@
-import dbConnect from "../../../util/mongo";
+import connectDB from "../../../util/couchbase";
 import Product from "../../../models/Product";
 
 export default async function handler(req, res) {
@@ -8,7 +8,7 @@ export default async function handler(req, res) {
 		cookies,
 	} = req;
 	const token = cookies.token;
-	dbConnect();
+	await connectDB();
 
 	if (method === "GET") {
 		try {
@@ -24,7 +24,9 @@ export default async function handler(req, res) {
 			return res.status(401).send("Not Authenticated");
 		}
 		try {
-			const product = await Product.create(req.body);
+			const product = await Product.updateById(id, req.body, {
+				new: true,
+			});
 			res.status(201).json(product);
 		} catch (err) {
 			res.status(500).json(err);
@@ -36,7 +38,7 @@ export default async function handler(req, res) {
 			return res.status(401).send("Not Authenticated");
 		}
 		try {
-			await Product.findByIdAndDelete(id);
+			await Product.removeById(id);
 			return res.status(200).send("Deleted successfully");
 		} catch (err) {
 			return res.status(500).send("Api error");

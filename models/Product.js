@@ -1,6 +1,6 @@
-import mongoose from "mongoose";
+import { Schema, getModel, model } from "ottoman";
 
-const ProductSchema = new mongoose.Schema(
+const ProductSchema = new Schema(
 	{
 		title: {
 			type: String,
@@ -32,5 +32,4 @@ const ProductSchema = new mongoose.Schema(
 	{ timestamps: true }
 );
 
-export default mongoose.models.Product ||
-	mongoose.model("Product", ProductSchema);
+export default getModel("Product") || model("Product", ProductSchema);
