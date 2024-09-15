@@ -8,6 +8,7 @@ export default async function handler(req, res) {
 		cookies,
 	} = req;
 	const token = cookies.token;
+	
 	await connectDB();
 
 	if (method === "GET") {
