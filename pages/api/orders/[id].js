@@ -1,4 +1,4 @@
-import dbConnect from "../../../util/mongo";
+import connectDB from "../../../util/couchbase";
 import Order from "../../../models/Order";
 
 const handler = async (req, res) => {
@@ -9,7 +9,7 @@ const handler = async (req, res) => {
 	} = req;
 	const token = cookies.token;
 
-	await dbConnect();
+	await connectDB();
 
 	if (method === "GET") {
 		try {
@@ -24,7 +24,7 @@ const handler = async (req, res) => {
 			return res.status(401).send("Not Authenticated");
 		}
 		try {
-			const order = await Order.findByIdAndUpdate(id, req.body, {
+			const order = await Order.updateById(id, req.body, {
 				new: true,
 			});
 			res.status(200).json(order);

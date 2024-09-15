@@ -24,7 +24,7 @@ const Cart = () => {
 
 			if (res.status === 201) {
 				dispatch(reset());
-				router.push(`/orders/${res.data._id}`);
+				router.push(`/orders/${res.data.id}`);
 			}
 		} catch (err) {
 			console.log(err);
@@ -61,7 +61,7 @@ const Cart = () => {
 						{cart.products.map((product) => (
 							<tr
 								className={styles.tr}
-								key={`${product._id}${Math.random() * 10}}`}
+								key={`${product.id}${Math.random() * 10}}`}
 							>
 								<td
 									className={styles.imgContainer}

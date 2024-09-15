@@ -17,7 +17,7 @@ const Index = ({ orders, products }) => {
 			const res = await axios.delete(
 				`${process.env.NEXT_PUBLIC_BASE_URL}/api/products/${id}`
 			);
-			setProductList(productList.filter((pizza) => pizza._id !== id));
+			setProductList(productList.filter((pizza) => pizza.id !== id));
 		} catch (err) {
 			console.log(err);
 		}
@@ -26,7 +26,7 @@ const Index = ({ orders, products }) => {
 	const handleEdit = async (id) => {};
 
 	const handleStatus = async (id) => {
-		const item = orderList.filter((order) => order._id === id)[0];
+		const item = orderList.filter((order) => order.id === id)[0];
 		const currentStatus = item.status;
 
 		try {
@@ -38,7 +38,7 @@ const Index = ({ orders, products }) => {
 			);
 			setOrderList([
 				res.data,
-				...orderList.filter((order) => order._id !== id),
+				...orderList.filter((order) => order.id !== id),
 			]);
 		} catch (err) {
 			console.log(err);
@@ -65,7 +65,7 @@ const Index = ({ orders, products }) => {
 						</tr>
 					</tbody>
 					{productList.map((product) => (
-						<tbody key={product._id}>
+						<tbody key={product.id}>
 							<tr className={styles.trTitle}>
 								<td>
 									<Image
@@ -76,19 +76,19 @@ const Index = ({ orders, products }) => {
 										alt=""
 									/>
 								</td>
-								<td>{product._id.slice(0, 5)}...</td>
+								<td>{product.id.slice(0, 5)}...</td>
 								<td>{product.title}</td>
 								<td>₹{product.price}</td>
 								<td>
 									{/* <button
 										className={styles.button}
-										onClick={() => handleEdit(product._id)}
+										onClick={() => handleEdit(product.id)}
 									>
 										Edit
 									</button> */}
 									<button
 										className={styles.button}
-										onClick={() => handleDelete(product._id)}
+										onClick={() => handleDelete(product.id)}
 									>
 										Delete
 									</button>
@@ -112,9 +112,9 @@ const Index = ({ orders, products }) => {
 						</tr>
 					</tbody>
 					{orderList.map((order) => (
-						<tbody key={order._id}>
+						<tbody key={order.id}>
 							<tr className={styles.trTitle}>
-								<td>{order._id.slice(0, 5)}...</td>
+								<td>{order.id.slice(0, 5)}...</td>
 								<td>{order.customer}</td>
 								<td>${order.total}</td>
 								<td>
@@ -122,7 +122,7 @@ const Index = ({ orders, products }) => {
 								</td>
 								<td>{status[order.status]}</td>
 								<td>
-									<button onClick={() => handleStatus(order._id)}>
+									<button onClick={() => handleStatus(order.id)}>
 										Next Stage
 									</button>
 								</td>
